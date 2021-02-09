@@ -50,21 +50,55 @@ In the distinct phases, we have implemented the code for each of the modules.
 
 ## PAJ7620U2
 
-First, we define gesture timings and import header files.
+
+### Header
+First, we define timings and import header files. GES_REACTION_TIME is the time between receiving a gesture and displaying the result on the screen. Also, the GES_QUIT_TIME is the amount of time that the output of a gesture is displayed on screen.
 
 ![paj header](images/header.png)
 
--- description
+### Setup
+
+In the setup function, we initialize the serial port of the arduino, and the PAJ7620U2 sensor, and make sure that no error exists in the initialization.
 
 ![paj setup](images/setup.png)
 
--- description
+### Loop
+
+The sensor outputs the received gesture in it's pre-defined flags. With these flags, we can recognize 15 different gestures. The code below uses 8 of these gestures.
 
 ![paj setup](images/loop.png)
 
 ## ESP8266
 
-TODO
+We create a WiFi server using ESP8266.
+
+### Header
+
+In the header section, we define the network username and password for the module to connect. The status variable is the status of the connection and module. In the end, we define the server that we want to use as socket server.
+
+![wifi header](images/wifi-header.png)
+
+### Setup
+
+In the setup section, we make sure that serial port and the wifi shield are up and running. At the end of the function, we print the status of the network that the chip is connected to.
+
+![wifi setup](images/wifi-setup.png)
+
+![wifi status](images/wifi-status.png)
+
+Later, we will use this status to connect to the server.
+
+### Loop
+
+In this function, we receive the client that is connected to the server, and echo back the data that is transmitted by them.
+
+![wifi loop](images/wifi-loop.png)
+
+## Combining WiFi Module and Gesture Sensor
+
+The previous two sections described the code and the functionality of the two main modules distinctly. Now, we want to combine these codes in order to complete our gesture module.
+
+![wifi loop](images/combined.png)
 
 ## Web Socket Client
 
